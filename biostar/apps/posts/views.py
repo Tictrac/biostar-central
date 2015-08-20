@@ -69,11 +69,11 @@ def valid_tag(text):
 class LongForm(forms.Form):
     FIELDS = "title content post_type tag_val".split()
 
-    POST_CHOICES = [(Post.QUESTION, "Question"),
-                    (Post.JOB, "Job Ad"),
-                    (Post.TUTORIAL, "Tutorial"), (Post.TOOL, "Tool"),
-                    (Post.FORUM, "Forum"), (Post.NEWS, "News"),
-                    (Post.BLOG, "Blog"), (Post.PAGE, "Page")]
+    POST_CHOICES = [(Post.FEATURE_IDEA, "Feature Idea"),
+                    (Post.QUESTION, "Question"),
+                    (Post.TUTORIAL, "Tutorial"),
+                    (Post.NEWS, "News"),
+                    ]
 
     title = forms.CharField(
         label="Post Title",
