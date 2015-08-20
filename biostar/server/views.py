@@ -171,9 +171,9 @@ class PostList(BaseListMixin):
         self.topic = self.kwargs.get("topic", "")
 
         # Catch expired sessions accessing user related information
-        if self.topic in AUTH_TOPIC and self.request.user.is_anonymous():
+        if self.request.user.is_anonymous():
             messages.warning(self.request, "Session expired")
-            self.topic = LATEST
+            self.topic = MYPOSTS
 
         query = posts_by_topic(self.request, self.topic)
         query = apply_sort(self.request, query)

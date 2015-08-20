@@ -82,7 +82,7 @@ class LongForm(forms.Form):
 
     post_type = forms.ChoiceField(
         label="Post Type",
-        choices=POST_CHOICES, help_text="Select a post type: Question, Forum, Job, Blog")
+        choices=POST_CHOICES, help_text="Select a post type: Feature Idea, Question, etc")
 
     tag_val = forms.CharField(
         label="Post Tags",

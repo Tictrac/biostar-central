@@ -195,21 +195,6 @@
                     <div>Log In</div>
                 </a></b>
             </div>
-
-            <div class="col-md-2 mid {% current request 'account_signup' %}">
-                <b><a href="{% url 'login' %}">
-                    <div><i class="fa fa-arrow-circle-up fa-1x"></i></div>
-                    <div>Sign Up</div>
-                </a></b>
-            </div>
-
-            <div class="col-md-2 mid newpost">
-                <a href="{% url 'new-post' %}" class="navitem ">
-                    <div><i class="fa fa-plus-circle fa-1x"></i></div>
-                    <div>Add New Post</div>
-                </a>
-            </div>
-
         {% endif %}
     </div>
 </div>
