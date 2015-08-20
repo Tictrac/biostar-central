@@ -5,7 +5,7 @@ from .models import Post
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Div, Submit, ButtonHolder
+from crispy_forms.layout import Layout, Field, Fieldset, Div, Submit
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpRequest
 from django.contrib import messages
@@ -106,8 +106,9 @@ class LongForm(forms.Form):
                 Field('tag_val'),
                 Field('content'),
             ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
+            Div(
+                Submit('submit', 'Submit'),
+                css_class='buttonHolder'
             )
         )
 
@@ -125,8 +126,9 @@ class ShortForm(forms.Form):
                 'Post',
                 'content',
             ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
+            Div(
+                Submit('submit', 'Submit'),
+                css_class='buttonHolder'
             )
         )
 

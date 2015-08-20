@@ -15,4 +15,6 @@ class TictracLDAPBackend(LDAPBackend):
             user, new = model.objects.get_or_create(**kwargs)
         else:
             user, new = super(TictracLDAPBackend, self).get_or_create_user(username, ldap_user)
+        user.name = ldap_user.attrs.get('displayname')[0]
+        user.save()
         return user, new

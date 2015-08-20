@@ -34,7 +34,7 @@ from django.contrib import auth as django_auth
 from crispy_forms.helper import FormHelper
 from django.views.generic import FormView
 from django.shortcuts import render
-from crispy_forms.layout import Layout, Fieldset, Submit, ButtonHolder, Div
+from crispy_forms.layout import Layout, Fieldset, Submit, Div
 
 
 logger = logging.getLogger(__name__)
@@ -384,8 +384,9 @@ class UserLoginForm(forms.Form):
                 Div(
                     Div('username', ),
                     Div('password', ),
-                    ButtonHolder(
-                        Submit('submit', 'Submit')
+                    Div(
+                        Submit('submit', 'Submit'),
+                        css_class='buttonHolder'
                     ),
                     css_class="col-md-offset-3 col-md-6",
                 ),

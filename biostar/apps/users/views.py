@@ -6,7 +6,7 @@ from . import auth
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Submit, ButtonHolder, Div
+from crispy_forms.layout import Layout, Field, Fieldset, Submit, Div
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -79,8 +79,9 @@ class UserEditForm(forms.Form):
                     Div('my_tags'),
                     Div('watched_tags'),
                     Div('info'),
-                    ButtonHolder(
-                        Submit('submit', 'Submit')
+                    Div(
+                        Submit('submit', 'Submit'),
+                        css_class='buttonHolder'
                     ),
                     css_class="col-md-12",
                 ),
@@ -194,8 +195,9 @@ class DigestForm(forms.Form):
                 'Update your digest settings',
                 Div(
                     Div('digest_prefs', ),
-                    ButtonHolder(
-                        Submit('submit', 'Submit')
+                    Div(
+                        Submit('submit', 'Submit'),
+                        css_class='buttonHolder'
                     ),
                     css_class="col-md-6",
                 ),

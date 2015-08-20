@@ -16,7 +16,7 @@ from braces.views import LoginRequiredMixin
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Submit, ButtonHolder
+from crispy_forms.layout import Layout, Field, Fieldset, Submit, Div
 from django.http import HttpResponseRedirect
 from django.db.models import Q, F
 from datetime import timedelta
@@ -121,8 +121,9 @@ class PostModForm(forms.Form):
                 'comment',
                 'dupe',
             ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
+            Div(
+                Submit('submit', 'Submit'),
+                css_class='buttonHolder'
             )
         )
 
@@ -308,8 +309,9 @@ class UserModForm(forms.Form):
                 'Select action',
                 'action',
             ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
+            Div(
+                Submit('submit', 'Submit'),
+                css_class='buttonHolder'
             )
         )
 
