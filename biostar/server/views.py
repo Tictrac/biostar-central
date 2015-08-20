@@ -360,6 +360,67 @@ class EditUser(EditUser):
     template_name = "user_edit.html"
 
 
+from django import forms
+from django.contrib import auth
+from crispy_forms.helper import FormHelper
+from django.views.generic import FormView
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from crispy_forms.layout import Layout, Field, Fieldset, Submit, ButtonHolder, Div
+
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(help_text="Your username")
+    password = forms.CharField(help_text="Your password")
+
+    class Meta:
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.error_text_inline = False
+        self.helper.help_text_inline = True
+
+        self.helper.layout = Layout(
+            Fieldset(
+                'Login',
+                Div(
+                    Div('username', ),
+                    Div('password', ),
+                    ButtonHolder(
+                        Submit('submit', 'Submit')
+                    ),
+                    css_class="col-md-offset-3 col-md-6",
+                ),
+            ),
+
+        )
+
+
+class LoginUser(FormView):
+    template_name = "user_login.html"
+    form_class = UserLoginForm
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse("home"))
+
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+
 class PostDetails(DetailView):
     """
     Shows a thread, top level post and all related content.

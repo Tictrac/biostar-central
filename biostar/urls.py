@@ -72,6 +72,9 @@ urlpatterns = patterns('',
     url(r'^site/logout/$', external_logout, name="logout"),
     url(r'^accounts/signup/$', CaptchaView.as_view(), name="signup"),
 
+    # Custom login
+    url(r'^login/$', views.LoginUser.as_view(), name="login"),
+
     # Email handlers
     url(r'^local/email/', views.email_handler, name="email-handler"),
 
